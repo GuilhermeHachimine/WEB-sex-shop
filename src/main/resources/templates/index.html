@@ -22,9 +22,20 @@
 			</form>
 		</div>
 	</div>
+	<h1 th:if="${not #lists.isEmpty(produtos)}"> Itens</h1>
+	<div th:if="${not #lists.isEmpty(produtos)}" th:each="produto : ${produtos}">
+			
+			<p th:text="'Código: '+${produto.codigo}"></p>
+			<p th:text="'Nome: '+${produto.nome}"></p>
+			<p th:text="'Preço: R$'+${produto.preco}"></p>
+			<p th:text="'Imagem: '+${produto.img_url}"></p>
+	</div>
+
 	
 	<br>
 	<br>
 	<a th:href="@{/usuario/novo}">Cadastrar Novo Usuário</a>
+	<br>
+	<a th:href="@{/produto/novo}">Cadastrar Novo Produto</a>
 </body>
 </html>

@@ -18,7 +18,7 @@ public class Produto implements Serializable{
 	@GeneratedValue(generator="gerador", strategy=GenerationType.SEQUENCE)
 	private Long codigo;
 	private String nome;
-	private Long preco;
+	private double preco;
 	private String img_url;
 	
 	public Long getCodigo() {
@@ -33,10 +33,10 @@ public class Produto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Long getPreco() {
+	public double getPreco() {
 		return preco;
 	}
-	public void setPreco(Long preco) {
+	public void setPreco(double preco) {
 		this.preco = preco;
 	}
 	public String getImg_url() {

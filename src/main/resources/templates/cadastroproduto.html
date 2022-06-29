@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+                   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Gerenciador de Contatos com Spring Boot</title>
+</head>
+<body>
+	<h1>Cadastro de Produto</h1>
+	
+	<form th:action="@{produto/novo}" method="post" th:object="${produto}">
+		<p>
+			<label for="nome">Nome:</label>
+			<input type="text" id="nome" th:field="*{nome}" autofocus="autofocus" required>
+		</p>
+		<p>
+			<label for="preco">Preço: R$ </label>
+			<input type="number" step="0.01" id="preco" th:field="*{preco}" required>
+		</p>
+		<p>
+			<label for="img_url">Insira o url da imagem:</label>
+			<input type="text" id="img_url" th:field="*{img_url}" required>
+		</p>
+
+		<br>
+		<input type="submit" value="Cadastrar" />
+	</form>
+	<p>
+		<a href="#" th:href="@{/}">Voltar para página principal</a>
+	</p>
+	
+	<!-- Bootstrap JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-9SEPo+fwJFpMUet/KACSwO+Z/dKMReF9q4zFhU/fT9M=" crossorigin="anonymous"></script>
+	<!-- flatpickr -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js" integrity="sha256-AkQap91tDcS4YyQaZY2VV34UhSCxu2bDEIgXXXuf5Hg=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js" integrity="sha256-dToT8NhAhejnL0aGbHv9BP6u+1u7vgv2QPUpkuDUhws=" crossorigin="anonymous"></script>
+	<!-- AlertifyJS JS -->
+	<script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js" integrity="sha256-QFMAm4xflERDUh0NdY1pa0+MovGNNdM8gda//qDRH64=" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/codigoninjadogodoi.js}"></script>
+	
+</body>
+</html>
