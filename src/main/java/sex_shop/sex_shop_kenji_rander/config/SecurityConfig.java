@@ -18,7 +18,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//.antMatchers("URL").hasAnyRole("ADMIN", "USUARIO")
 				.and()
 			// A autenticação usando formulário está habilitada 
-			.formLogin();
+				.formLogin()
+				// Uma página de login customizada
+				.loginPage("/login");
+				// Define a URL para o caso de falha no login
+				//.failureUrl("/login-error");
 	}
 
 }

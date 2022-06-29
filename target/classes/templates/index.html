@@ -1,11 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Spring MVC com Spring Boot</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Spring MVC com Spring Boot</title>
 </head>
 <body>
 	<h1>Bem vindo ao Spring Boot!</h1>
+	<div th:fragment="logout" sec:authorize="isAuthenticated()">
+		<p>
+			Usuário Logado: <span sec:authentication="principal.username"></span>
+		</p>
+		<p>
+			Papéis: <span sec:authentication="principal.authorities"></span>
+		</p>
+		<p sec:authorize="hasRole('ROLE_ADMIN')">Se você está vendo isso é porque você é um ADMIN.</p>
+		<p sec:authorize="hasRole('ROLE_USUARIO')">Se você está vendo isso é porque você é um USUARIO.</p>
+		<div>
+			<form action="#" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+	</div>
+	
+	<br>
 </body>
 </html>
