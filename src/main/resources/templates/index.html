@@ -28,7 +28,8 @@
 			<p th:text="'Código: '+${produto.codigo}"></p>
 			<p th:text="'Nome: '+${produto.nome}"></p>
 			<p th:text="'Preço: R$'+${produto.preco}"></p>
-			<p th:text="'Imagem: '+${produto.img_url}"></p>
+			<img style="width:480px"th:src="@{${produto.imgUrl}}"/>
+			<hr>
 	</div>
 
 	

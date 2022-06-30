@@ -2,6 +2,7 @@ package sex_shop.sex_shop_kenji_rander.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,13 +14,17 @@ import javax.persistence.Table;
 @Table(name = "produto")
 public class Produto implements Serializable{
 	private static final long serialVersionUID = 1526262475932778296L;// gere um outro valor
+	
 	@Id
 	@SequenceGenerator(name="gerador", sequenceName="produto_codigo_seq", allocationSize=1)
 	@GeneratedValue(generator="gerador", strategy=GenerationType.SEQUENCE)
 	private Long codigo;
+	
 	private String nome;
 	private double preco;
-	private String img_url;
+	
+	@Column(name = "img_url")
+	private String imgUrl;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -39,11 +44,12 @@ public class Produto implements Serializable{
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
-	public String getImg_url() {
-		return img_url;
+
+	public String getImgUrl() {
+		return imgUrl;
 	}
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	@Override
 	public int hashCode() {
@@ -70,9 +76,10 @@ public class Produto implements Serializable{
 			return false;
 		return true;
 	}
-	
 	@Override
 	public String toString() {
-		return "Produto [codigo=" + codigo + ", nome=" + nome + ", preco=" + preco + ", img_url=" + img_url + "]";
+		return "Produto [codigo=" + codigo + ", nome=" + nome + ", preco=" + preco + ", imgUrl=" + imgUrl + "]";
 	}
+	
+
 }
