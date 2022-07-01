@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,16 @@ public class ProdutoController {
 		mv = new ModelAndView("index");
 		cadastroProdutoService.salvar(produto);
 		logger.trace("Redirecionando para a URL /index");
+		return mv;
+	}
+	
+	@PostMapping("/remover")
+	public ModelAndView remover(Long codigo,Model model) {
+		cadastroProdutoService.remover(codigo);
+		logger.trace("Redirecionando para a URL /lotes/alteracaosucesso");
+		ModelAndView mv = new ModelAndView("mostrarmensagem");
+		logger.trace("Encaminhando para a view mensagem");
+		model.addAttribute("mensagem", "Produto removido com sussexo!");
 		return mv;
 	}
 	

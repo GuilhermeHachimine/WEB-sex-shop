@@ -66,5 +66,7 @@ private static final Logger logger = LoggerFactory.getLogger(UsuarioController.c
 		}
 		return mv;
 	}
+	
+	
 
 }

@@ -24,4 +24,12 @@ public class CadastroProdutoService {
 		logger.debug("Produto salvo com sucesso {}", produto);
 	}
 	
+	
+	@Transactional
+	public void remover(Long codigo) {
+		logger.trace("Entrou no método remover");
+		produtoRepository.deleteById(codigo);
+		logger.info("Produto removido com sucesso.");
+	}
+	
 }
