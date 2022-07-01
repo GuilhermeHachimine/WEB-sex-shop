@@ -15,16 +15,12 @@
 <title>Spring MVC com Spring Boot</title>
 </head>
 <body>
-	<h1>Bem vindo ao Spring Boot!</h1>
+	<h1>Bem vindo ao Sex Shop Kender</h1>
+	<a  sec:authorize="!isAuthenticated()" th:href="@{/login}">Logue aqui para comprar</a>
 	<div th:fragment="logout" sec:authorize="isAuthenticated()">
 		<p>
 			Usuário Logado: <span sec:authentication="principal.username"></span>
 		</p>
-		<p>
-			Papéis: <span sec:authentication="principal.authorities"></span>
-		</p>
-		<p sec:authorize="hasRole('ROLE_ADMIN')">Se você está vendo isso é porque você é um ADMIN.</p>
-		<p sec:authorize="hasRole('ROLE_USUARIO')">Se você está vendo isso é porque você é um USUARIO.</p>
 		<div>
 			<form action="#" th:action="@{/logout}" method="post">
 				<input type="submit" value="Logout" />
@@ -38,19 +34,21 @@
 			<p th:text="'Nome: '+${produto.nome}"></p>
 			<p th:text="'Preço: R$'+${produto.preco}"></p>
 			<img style="width:480px"th:src="@{${produto.imgUrl}}"/>
-			<form sec:authorize="hasRole('ROLE_USUARIO')" th:action="@{/comprar/produtos}" method="post">
-				<input type="hidden" name="codigo" th:value="${produto.codigo}">
-				<input type="hidden" name="nome" th:value="${produto.nome}">
-				<input type="hidden" name="preco" th:value="${produto.preco}">
-				<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
-				<input type="submit" value="Comprar">
-			</form>
-			<form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/produto/remover}" method="post">
-				<input type="hidden" name="codigo" th:value="${produto.codigo}">
-				<button type="submit" class="Remover">
-					<i class="bi bi-trash"></i>
-				</button>
-			</form>
+			<div sec:authorize="isAuthenticated()">
+				<form sec:authorize="hasRole('ROLE_USUARIO')" th:action="@{/comprar/produtos}" method="post">
+					<input type="hidden" name="codigo" th:value="${produto.codigo}">
+					<input type="hidden" name="nome" th:value="${produto.nome}">
+					<input type="hidden" name="preco" th:value="${produto.preco}">
+					<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
+					<input type="submit" value="Comprar">
+				</form>
+				<form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/produto/remover}" method="post">
+					<input type="hidden" name="codigo" th:value="${produto.codigo}">
+					<button type="submit" class="Remover">
+						<i class="bi bi-trash"></i>
+					</button>
+				</form>
+			</div>
 			<hr>
 	</div>
 

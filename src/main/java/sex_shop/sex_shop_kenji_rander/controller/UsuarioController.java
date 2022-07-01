@@ -5,10 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,17 +44,20 @@ private static final Logger logger = LoggerFactory.getLogger(UsuarioController.c
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView cadastrarNovoUsuario(Usuario usuario) {
+	public ModelAndView cadastrarNovoUsuario(Usuario usuario,Model model) {
 		logger.trace("Entrou em cadastrarNovoUsuario");
 		logger.debug("Usuario recebido {}", usuario);
 		logger.debug("Papeis recebidos para o usuario {}", usuario.getPapeis());
 		ModelAndView mv;
+
 		if (!usuario.getPapeis().isEmpty()) {
 			usuario.setAtivo(true);
 			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 			cadastroUsuarioService.salvar(usuario);
 			logger.trace("Redirecionando para a URL /usuario/novo");
-			mv = new ModelAndView ("redirect:/usuario/novo");
+			mv = new ModelAndView("mostrarmensagem");
+			logger.trace("Encaminhando para a view mensagem");
+			model.addAttribute("mensagem", "Usuário cadastrado com sussexo!");
 		} else {
 			logger.error("Nenhum papel colocado no usuario");
 			List<Papel> papeis = papelRepository.findAll();
@@ -70,7 +72,9 @@ private static final Logger logger = LoggerFactory.getLogger(UsuarioController.c
 			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
 			cadastroUsuarioService.salvar(usuario);
 			logger.trace("Redirecionando para a URL /usuario/novo");
-			mv = new ModelAndView ("redirect:/usuario/novo");
+			mv = new ModelAndView("mostrarmensagem");
+			logger.trace("Encaminhando para a view mensagem");
+			model.addAttribute("mensagem", "Usuário cadastrado com sussexo!");
 		}
 		return mv;
 	}

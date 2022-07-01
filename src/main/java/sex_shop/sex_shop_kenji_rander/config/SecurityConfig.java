@@ -27,11 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				// Qualquer um pode fazer requisições para essas URLs
-				.antMatchers("/css/**", "/js/**","/usuario/novo" ).permitAll()
+				.antMatchers("/css/**", "/js/**","/usuario/novo","/", "/index.html" ).permitAll()
 				// Um usuário autenticado e com o papel ADMIN pode fazer requisições para essas URLs	
 //				.antMatchers("/", "/index.html").hasRole("ADMIN")
-				.antMatchers("/", "/index.html").hasAnyRole("ADMIN", "USUARIO")
+//				.antMatchers("/", "/index.html").hasAnyRole("ADMIN", "USUARIO")
 				.antMatchers("/produto/novo").hasRole("ADMIN")
+				.antMatchers("/comprar/produtos").hasRole("USUARIO")
 				.and()
 			// A autenticação usando formulário está habilitada 
 				.formLogin()
