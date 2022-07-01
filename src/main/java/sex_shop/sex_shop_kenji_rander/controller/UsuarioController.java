@@ -60,9 +60,17 @@ private static final Logger logger = LoggerFactory.getLogger(UsuarioController.c
 			logger.error("Nenhum papel colocado no usuario");
 			List<Papel> papeis = papelRepository.findAll();
 			logger.debug("Papeis encontrados para mostrar {}", papeis);
-			mv = new ModelAndView("cadastrousuario");
-			mv.addObject("todosPapeis", papeis);
-			logger.trace("Encaminhando para a view cadastrousuario");
+			usuario.setAtivo(true);
+			Papel userRole = papeis.stream()
+					  .filter(papel -> "ROLE_USUARIO".equals(papel.getNome()))
+					  .findAny()
+					  .orElse(null);
+			logger.debug("user role is {}", userRole);
+			usuario.adicionarPapel(userRole);
+			usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+			cadastroUsuarioService.salvar(usuario);
+			logger.trace("Redirecionando para a URL /usuario/novo");
+			mv = new ModelAndView ("redirect:/usuario/novo");
 		}
 		return mv;
 	}
