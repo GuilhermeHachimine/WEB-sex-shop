@@ -117,7 +117,9 @@ public class Venda implements Serializable{
 	@Override
 	public String toString() {
 		return "Venda [codigo=" + codigo + ", codigoUsuario=" + codigoUsuario + ", dataVenda=" + dataVenda
-				+  "]";
+				+ ", quantidade=" + quantidade + ", produtos=" + produtos + "]";
 	}
+
+
 
 }
