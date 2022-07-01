@@ -28,7 +28,14 @@
 			<p th:text="'Código: '+${produto.codigo}"></p>
 			<p th:text="'Nome: '+${produto.nome}"></p>
 			<p th:text="'Preço: R$'+${produto.preco}"></p>
-			<img style="width:480px"th:src="@{${produto.imgUrl}}"/>
+			<!-- <img style="width:480px"th:src="@{${produto.imgUrl}}"/> -->
+			<form th:action="@{/comprar/produtos}" method="post">
+				<input type="hidden" name="codigo" th:value="${produto.codigo}">
+				<input type="hidden" name="nome" th:value="${produto.nome}">
+				<input type="hidden" name="preco" th:value="${produto.preco}">
+				<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
+				<input type="submit" value="Comprar">
+			</form>
 			<hr>
 	</div>
 
