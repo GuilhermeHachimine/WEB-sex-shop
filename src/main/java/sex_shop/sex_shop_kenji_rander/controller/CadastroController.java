@@ -33,15 +33,9 @@ public class CadastroController {
 		produto.setCodigo(null);
 		logger.debug("Produto recebido {}", produto);
 		cadastroProdutoService.salvar(produto);
-		logger.trace("Entrou em index");
-		ModelAndView mv = new ModelAndView("index");
-		//Se voce precisar pode inserir outros objetos no model para que sejam usados
-		// na view index.html
-		//mv.addObject("nome", valor);
-		List<Produto> produtos = produtoRepository.findAll();
-		logger.debug("Produtos do banco: {}", produtos);
-		logger.trace("Encaminhando para a view index");
-		model.addAttribute("produtos", produtos);
+		ModelAndView mv = new ModelAndView("mostrarmensagem");
+		logger.trace("Encaminhando para a view mensagem");
+		model.addAttribute("mensagem", "Produto criado");
 		return mv;
 	}
 }

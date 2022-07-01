@@ -16,6 +16,7 @@
 </head>
 <body>
 	<h1>Compra produto</h1>
+		<br>
 		<div >
 			<p th:text="'Código: '+${produto.codigo}"></p>
 			<p th:text="'Nome: '+${produto.nome}"></p>
@@ -26,6 +27,7 @@
 				<input type="hidden" name="nome" th:value="${produto.nome}">
 				<input type="hidden" name="preco" th:value="${produto.preco}">
 				<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
+				<input type="number" name="quantidade">
 				<input type="submit" value="Comprar">
 			</form>
 			<hr>

@@ -16,7 +16,16 @@ public class CompraController {
 	
 	
 	@PostMapping("/produtos")
-	public String abrirEscolhaVacina(Produto produto, Model model) {
+	public String abrirCompraProduto(Produto produto, Model model) {
+		logger.trace("Entrou em direcionar compra produto");
+		logger.trace("Produto a ser comprado {}",produto );
+		model.addAttribute("produto", produto);
+		logger.trace("direcionando para compraproduto");
+		return "/compraproduto";
+	}
+	
+	@PostMapping("/salvar")
+	public String salvarVenda(Produto produto, Model model) {
 		logger.trace("Entrou em direcionar compra produto");
 		logger.trace("Produto a ser comprado {}",produto );
 		model.addAttribute("produto", produto);
