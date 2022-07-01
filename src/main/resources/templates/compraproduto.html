@@ -16,17 +16,20 @@
 </head>
 <body>
 	<h1>Compra produto</h1>
-		<br>
+
+	Usuário Logado: <span sec:authentication="principal.codigo"></span>
+	</div>
 		<div >
 			<p th:text="'Código: '+${produto.codigo}"></p>
 			<p th:text="'Nome: '+${produto.nome}"></p>
 			<p th:text="'Preço: R$'+${produto.preco}"></p>
 			<!-- <img style="width:480px"th:src="@{${produto.imgUrl}}"/> -->
-			<form th:action="@{/comprar/produtos}" method="post">
+			<form th:action="@{/comprar/produtos}" method="post" th:object="${venda}">
 				<input type="hidden" name="codigo" th:value="${produto.codigo}">
 				<input type="hidden" name="nome" th:value="${produto.nome}">
 				<input type="hidden" name="preco" th:value="${produto.preco}">
 				<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
+				<input type="hidden" th:field="*{produtos}" th:value="${produto.codigo}">
 				<input type="number" name="quantidade">
 				<input type="submit" value="Comprar">
 			</form>

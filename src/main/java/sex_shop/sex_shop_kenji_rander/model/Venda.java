@@ -34,6 +34,8 @@ public class Venda implements Serializable{
 	@Column(name = "data_venda")
 	private LocalDate dataVenda;
 	
+	private Long quantidade;
+	
 	@ManyToMany
 	@JoinTable(name = "venda_produto", joinColumns = @JoinColumn(name = "codigo_venda"), inverseJoinColumns = @JoinColumn(name = "codigo_produto"))
 	private List<Produto> produtos = new ArrayList<>();
@@ -78,6 +80,14 @@ public class Venda implements Serializable{
 		produtos.remove(produto);
 	}
 
+	
+	public Long getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Long quantidade) {
+		this.quantidade = quantidade;
+	}
 
 	@Override
 	public int hashCode() {
