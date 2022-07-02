@@ -36,17 +36,20 @@
           <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
           <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
           <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          
+
         </div>
       </div>
 
       <nav id="navbar" class="nav-menu navbar">
         <ul>
-          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Produtos</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Produtos</span></a></li>
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Sobre Nós</span></a></li>
-          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Login</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio / Área de Login</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Ficha Cadastro</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contato</span></a></li>
+          <li sec:authorize="isAuthenticated()">
+          <form action="#" th:action="@{/logout}" method="post" class="nav-link scrollto">
+		  	<input type="submit" value="Logout"class="button-13" role="button" /><br><br>
+		  </form></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -69,7 +72,7 @@
 			<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/produto/novo}">Cadastrar Novo Produto</a>
 		       
 		    
-		      <br></div>
+		      </div>
            <div align="center">
 		
 	<a  sec:authorize="!isAuthenticated()" th:href="@{/login}">Logue aqui para comprar</a><br><br><br>
@@ -77,11 +80,9 @@
 		<p>
 			Usuário Logado: <span sec:authentication="principal.username"></span>
 		</p>
-		<div>
-			<form action="#" th:action="@{/logout}" method="post">
-				<input type="submit" value="Logout" />
-			</form>
-		</div>
+		<br>
+
+	
 	</div>
 	<br><h2 th:if="${not #lists.isEmpty(produtos)}"> Itens</h2><br>
 	<div th:if="${not #lists.isEmpty(produtos)}" th:each="produto : ${produtos}">
@@ -132,36 +133,32 @@
           
         </div>
     </section><!-- End About Section -->
-
-  
-
-  
-
-    
-
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
 
         <div class="section-title">
           <h2>Contato</h2>
-          <p>Caso tenha interesse em meu trabalho, por favor entre em contato</p>
+          <p>Caso tenha interesse em nossos produtos, por favor entre em contato</p>
         </div>
 
-        <div class="row" data-aos="fade-in">
+        <div class="row" >
+        
 
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Localidade : </h4>
-                <p>Avenida Guarapuava, 444, Valim de Melo, Uberaba - MG</p>
+                <p>Avenida Flamboyant, 15, Vila Olímpica, Uberaba, Minas Gerais</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email :</h4>
-                <p>rander.paula@estudante.iftm.edu.br</p>
+                <p>kendersexshop@gmail.com</p>
               </div>
 
               <div class="phone">
@@ -170,7 +167,7 @@
                 <p>(34) 988345121</p>
               </div>
 
-              <iframe src="https://maps.google.com/maps?q=avenida%20guarapuava%20444&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+              <iframe src="https://maps.google.com/maps?q=avenida%20flamboyant,%2015&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
             </div>
 
           </div>
