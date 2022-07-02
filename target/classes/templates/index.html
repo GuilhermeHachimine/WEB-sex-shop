@@ -87,24 +87,31 @@
 	<br><h2 th:if="${not #lists.isEmpty(produtos)}"> Itens</h2><br>
 	<div th:if="${not #lists.isEmpty(produtos)}" th:each="produto : ${produtos}">
 			
-			<p th:text="'Código: '+${produto.codigo}"></p>
-			<p th:text="'Nome: '+${produto.nome}"></p>
-			<p th:text="'Preço: R$'+${produto.preco}"></p>
-			<img style="width:480px"th:src="@{${produto.imgUrl}}"/>
-			<div text-align: centersec:authorize="isAuthenticated()" >
-				<form sec:authorize="hasRole('ROLE_USUARIO')" th:action="@{/comprar/produtos}" method="post">
-					<input type="hidden" name="codigo" th:value="${produto.codigo}">
-					<input type="hidden" name="nome" th:value="${produto.nome}">
-					<input type="hidden" name="preco" th:value="${produto.preco}">
-					<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
-					<input type="submit" value="Comprar">
-				</form>
-				<form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/produto/remover}" method="post">
-					<input type="hidden" name="codigo" th:value="${produto.codigo}">
-					<button type="submit" class="Remover">
-						<i class="bi bi-trash"></i>
-					</button>
-				</form>
+			
+			<div class="instagram-card">
+	    		<div>
+	    		<p class="instagram-card-user-name" th:text="'Código: '+${produto.codigo}"></p>
+				<p class="instagram-card-user-name" th:text="'Nome: '+${produto.nome}"></p>
+				<p class="instagram-card-user-name" th:text="'Preço: R$'+${produto.preco}"></p>
+	    		</div>
+	    		<div class="intagram-card-image">
+					<img style="max-width:480px;max-height:600px" th:src="@{${produto.imgUrl}}"/>
+	    		</div>
+				<div class="instagram-card-content" text-align: centersec:authorize="isAuthenticated()" >
+					<form sec:authorize="hasRole('ROLE_USUARIO')" th:action="@{/comprar/produtos}" method="post">
+						<input type="hidden" name="codigo" th:value="${produto.codigo}">
+						<input type="hidden" name="nome" th:value="${produto.nome}">
+						<input type="hidden" name="preco" th:value="${produto.preco}">
+						<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
+						<input type="submit" value="Comprar">
+					</form>
+					<form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/produto/remover}" method="post">
+						<input type="hidden" name="codigo" th:value="${produto.codigo}">
+						<button type="submit" class="Remover">
+							<i class="bi bi-trash"></i>
+						</button>
+					</form>
+				</div>
 			</div>
 			<hr>
 	</div>
