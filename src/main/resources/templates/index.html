@@ -105,13 +105,15 @@
 						<input type="hidden" name="imgUrl" th:value="${produto.imgUrl}">
 						<input type="submit" value="Comprar">
 					</form>
+				</div>
+				<div class="instagram-card-content" text-align: centersec:authorize="isAuthenticated()" >
 					<form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/produto/remover}" method="post">
 						<input type="hidden" name="codigo" th:value="${produto.codigo}">
 						<button type="submit" class="Remover">
 							<i class="bi bi-trash"></i>
 						</button>
 					</form>
-				</div>
+				
 			</div>
 			<hr>
 	</div>
